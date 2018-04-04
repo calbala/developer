@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+  springboot:
+    build: .
+    restart: always
+    container_name: mycontainer
+    ports:
+      - 8080:8080
+    working_dir: /opt/app
+    depends_on:
+      - mongo
+  
+  mongo:
+    image: mongo
+    container_name: insurance-quote
+    ports:  
+      - 27017:27017
+    volumes:
+      - $HOME/data/insurance-quote-data:/data/db
+      - $HOME/data/insurance-quote-bkp:/data/bkp
+    restart: always
+  
+  rabbitmq:
+    image: rabbitmq
+    container_name: insurance-queue
+    ports:
+      - 5672  
+    restart: always  
+    
+    
