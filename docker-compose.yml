@@ -1,18 +1,10 @@
-version: '3.1'
-
+version: '3.6'
 services:
-  springboot:
-    build: .
-    restart: always
-    container_name: mycontainer
-    ports:
-      - 8080:8080
-    working_dir: /opt/app
-    depends_on:
-      - mongo
   
   mongo:
     image: mongo
+    networks:
+      - backend
     container_name: insurance-quote
     ports:  
       - 27017:27017
@@ -22,10 +14,16 @@ services:
     restart: always
   
   rabbitmq:
-    image: rabbitmq
+    image: rabbitmq:management
+    networks:
+      - backend
     container_name: insurance-queue
     ports:
-      - 5672  
+      - 5672:5672  
+      - 15672:15672
     restart: always  
     
-    
+networks:
+  frontend:
+  backend:
+      
