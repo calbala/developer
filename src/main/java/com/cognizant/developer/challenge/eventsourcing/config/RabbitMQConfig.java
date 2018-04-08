@@ -21,10 +21,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 public class RabbitMQConfig {
 	
-	public static final String topicExchangeName = "spring-boot-exchange";
+	//public static final String topicExchangeName = "spring-boot-exchange";
 
-    public static final String queueName = "spring-boot";
-
+    public static final String queueName = "business-events";
+    /*
     @Bean
     Queue queue() {
         return new Queue(queueName, false);
@@ -39,7 +39,7 @@ public class RabbitMQConfig {
     Binding binding(Queue queue, TopicExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with("foo.bar.#");
     }
-
+*/
     @Bean
     SimpleMessageListenerContainer container(ConnectionFactory connectionFactory,
             MessageListenerAdapter listenerAdapter) {

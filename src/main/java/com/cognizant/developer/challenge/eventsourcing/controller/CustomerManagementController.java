@@ -20,7 +20,13 @@ public class CustomerManagementController {
 	
 	@RequestMapping(value = "/addcustomer", method = RequestMethod.POST)
     public Customer addCustomer(Customer customer) {
-		return epub.publishCustomer(customer);
+		return epub.addCustomer(customer);
+        
+    }
+	
+	@RequestMapping(value = "/deletecustomer", method = RequestMethod.POST)
+    public Customer deleteCustomer(Customer customer) {
+		return epub.deleteCustomer(customer);
         
     }
 	
